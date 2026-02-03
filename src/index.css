@@ -2,10 +2,7 @@
 
 @theme {
   --text: #F8FAFC;
-  --text-secondary: #94A3B8;
-  --primary: #1E40AF;          /* Azul navy/marinho */
-  --calculator-bg: #1E293B;
-  --body-bg: #0C1222;          /* Quase preto azulado */
+  --body-bg: #0C1222;
   --button-default: #1E293B;
   
   --gradient: 180deg,

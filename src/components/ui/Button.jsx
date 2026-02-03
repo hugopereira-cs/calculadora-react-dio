@@ -1,8 +1,15 @@
 import { Text } from "./Text"
 
 const buttonVariants = {
-  default: 'bg-background',
-  primary: 'bg-primary'
+  default: `
+    bg-button-default
+    bg-[linear-gradient(var(--gradient))]
+    hover:bg-[linear-gradient(var(--gradient-hover))]
+  `,
+  primary: `
+    bg-[#1E40AF]/60
+    hover:opacity-100
+  `
 }
 
 export function Button({ 

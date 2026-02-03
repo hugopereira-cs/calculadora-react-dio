@@ -3,7 +3,7 @@ export function Card({ children, className = '', ...props }) {
     <div
       className={`
         bg-background
-        shadow-(--shaddow)
+        shadow-(--shadow)
         rounded-2xl
         ${className}
         `}

@@ -1,6 +1,4 @@
-// TODO
-
-import { Text } from './ui/Text';
+import { Text } from "./ui/Text";
 
 export function CalculatorDisplay({ operation, result }) {
   return (
@@ -8,7 +6,9 @@ export function CalculatorDisplay({ operation, result }) {
       <Text as="div" variant="muted" className="flex items-center justify-end">
         {operation}
       </Text>
-      <div className="flex items-center justify-betweeen">
+      <div className={`
+            flex items-center justify-between  
+          `}>
         <Text variant="muted">=</Text>
         <Text variant="blast">{result}</Text>
 

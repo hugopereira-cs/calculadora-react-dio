@@ -1,6 +1,6 @@
 const textVariants = {
   default: 'text-xl',
-  muted: 'text-xl text-text-secondary',
+  muted: 'text-xl text-[#94A3B8]',
   heading: 'text-2xl',
   blast: 'text-3xl'
 }

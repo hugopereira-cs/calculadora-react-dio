@@ -38,7 +38,7 @@ export function Calculator() {
         <div className="flex gap-3">
           <Button className="flex-1 h-16">0</Button>
           <Button className="w-16 h-16">,</Button>
-          <Button className="w-16 h-16" variant="primary">=</Button>
+          <Button className="w-16 h-16 bg-[#1E40AF]/99" variant="primary">=</Button>
         </div>
       </div>
     </Card>
