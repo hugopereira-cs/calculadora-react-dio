@@ -1,5 +1,3 @@
-// TODO
-
 import { CalculatorDisplay } from './CalculatorDisplay'
 import { Button } from './ui/Button'
 import { Card } from './ui/Card'
