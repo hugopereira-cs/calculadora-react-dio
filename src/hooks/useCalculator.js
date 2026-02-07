@@ -33,14 +33,14 @@ export function useCalculator() {
    * Adiciona um dígito ao display
    */
   const handleNumberClick = useCallback((digit) => {
-    if (waitingForOperand) {
-      setDisplay(String(digit));
-      setWaitingForOperand(false);
-    } else {
-      setDisplay(display === '0' ? String(digit) : display + digit);
-    }
-  }, [display, waitingForOperand]);
-
+    setDisplay(prevDisplay => {
+      if (waitingForOperand) {
+        setWaitingForOperand(false);
+        return String(digit);
+      }
+      return prevDisplay === '0' ? String(digit) : prevDisplay + digit;
+    }); 
+  }, [waitingForOperand]);
   /**
    * Adiciona ponto decimal
    */
