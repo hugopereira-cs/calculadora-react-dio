@@ -31,7 +31,7 @@ export function OperationHistory({ history, onClearHistory }) {
             <Text
             as="li"
             key={historyEntry.id}
-            className="hove:text-white transition-colors"
+            className="hover:text-white transition-colors"
             >
               {historyEntry.operation}
             </Text>

@@ -36,11 +36,11 @@ export function calculate(a, b, operator) {
  * @returns {string} Valor formatado
  */
 export function formatDisplay(value) {
-  if (value === '') return 0;
-
   // Converte o valor para número, para que seja possível fazer verificações.
   const num = parseFloat(value);
-  if (Number.isNaN(num)) return value;
+
+  // Garante que o valor não seja nulo ou vazio, retornando 0 (string) nesses casos.
+  if (Number.isNaN(num)) return '0';
 
   // Se for muito grande, usa notação científica
   if (Math.abs(num) > 999999999) {
