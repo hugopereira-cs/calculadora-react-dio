@@ -76,39 +76,42 @@ export function useCalculator() {
 	/**
 	 * Gerencia click em operador (+, -, *, /)
 	 */
-	const handleOperatorClick = useCallback((nextOperator) => {
-  setDisplay(prevDisplay => {
-    const inputValue = parseFloat(prevDisplay.replace(',', '.'));
+	const handleOperatorClick = useCallback(
+		(nextOperator) => {
+			setDisplay((prevDisplay) => {
+				const inputValue = parseFloat(prevDisplay.replace(",", "."));
 
-    if (firstOperand === null) {
-      setFirstOperand(inputValue);
-      setWaitingForOperand(true);
-      setOperator(nextOperator);
-      return prevDisplay;
-    }
+				if (firstOperand === null) {
+					setFirstOperand(inputValue);
+					setWaitingForOperand(true);
+					setOperator(nextOperator);
+					return prevDisplay;
+				}
 
-    if (operator) {
-      try {
-        const result = calculate(firstOperand, inputValue, operator);
-        setFirstOperand(result);
-        setWaitingForOperand(true);
-        setOperator(nextOperator);
-        return String(result).replace('.', ',');
-      } catch (error) {
-        setDisplay('Erro');
-        console.error('Erro na calculadora:', error);
-        setFirstOperand(null);
-        setOperator(null);
-        setWaitingForOperand(true);
-        return 'Erro';
-      }
-    }
+				if (operator) {
+					try {
+						const result = calculate(firstOperand, inputValue, operator);
+						setFirstOperand(result);
+						setWaitingForOperand(true);
+						setOperator(nextOperator);
+						return String(result).replace(".", ",");
+					} catch (error) {
+						setDisplay("Erro");
+						console.error("Erro na calculadora:", error);
+						setFirstOperand(null);
+						setOperator(null);
+						setWaitingForOperand(true);
+						return "Erro";
+					}
+				}
 
-    setWaitingForOperand(true);
-    setOperator(nextOperator);
-    return prevDisplay;
-  });
-}, [firstOperand, operator]);
+				setWaitingForOperand(true);
+				setOperator(nextOperator);
+				return prevDisplay;
+			});
+		},
+		[firstOperand, operator],
+	);
 
 	/**
 	 * Calcula o resultado final (=)
