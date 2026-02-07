@@ -17,7 +17,7 @@ export function Calculator({ calculator }) {
   } = calculator;
 
   return (
-    <Card className="flex flex-col gap-6.5 w-89 pt-14 px-8 pb-8 bg-[#1E293B]">
+    <Card className="flex flex-col gap-8 w-89 pt-14 px-8 pb-8 bg-[#1E293B]">
       <CalculatorDisplay operation={currentOperation} result={display} />
       
       <div className="flex flex-col gap-3">
