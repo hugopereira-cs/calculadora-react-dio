@@ -13,7 +13,7 @@ function App() {
       <Calculator calculator={calculator}/>
       <OperationHistory 
         history={calculator.history}
-        onClearHistory={calculator.clearHistory}
+        onClearHistory={calculator.handleClearHistory}
       />
     </main>
   )

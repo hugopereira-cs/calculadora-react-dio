@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import {  useCallback, useEffect, useState } from 'react';
 import { calculate, formatOperation } from '../utils/calculator';
 
 /**
@@ -25,6 +25,7 @@ export function useCalculator() {
   useEffect(() => {
     const savedHistory = localStorage.getItem('calculator-history');
     if (savedHistory) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setHistory(JSON.parse(savedHistory));
     }
   }, []);
@@ -114,16 +115,21 @@ export function useCalculator() {
         const result = calculate(firstOperand, inputValue, operator);
 
         // Adiciona ao histórico
-        const operation = formatOperation(
+        const operationString = formatOperation(
           String(firstOperand),
           operator,
           display.replace(',', '.'),
           String(result)
         );
 
-        setHistory(prev => [operation, ...prev].slice(0,50)); // Mantém últimas 50
+        const newHistoryEntry = {
+          id: `${Date.now()}-${operationString}`,
+          operation: operationString
+        }
 
-        setDisplay(String(result).replace(',', '.'));
+        setHistory(prev => [newHistoryEntry, ...prev].slice(0,50)); // Mantém últimas 50
+
+        setDisplay(String(result).replace('.', ','));
         setFirstOperand(null);
         setOperator(null);
         setWaitingForOperand(true);
