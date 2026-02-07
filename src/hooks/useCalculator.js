@@ -18,17 +18,11 @@ export function useCalculator() {
   //Indica se acabou de calcular (para limpar o display no próximo número)
   const [waitingForOperand, setWaitingForOperand] = useState(false);
 
-  // Histórico de operações
-  const [history, setHistory] = useState([]);
-
   // Carrega histórico do localstorage ao iniciar
-  useEffect(() => {
+  const [history, setHistory] = useState(() => {
     const savedHistory = localStorage.getItem('calculator-history');
-    if (savedHistory) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setHistory(JSON.parse(savedHistory));
-    }
-  }, []);
+    return savedHistory ? JSON.parse(savedHistory) : []
+  });
 
   // Salva histórico no localStorage sempre que mudar
   useEffect(() => {
