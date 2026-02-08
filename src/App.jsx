@@ -11,7 +11,7 @@ function App() {
   // - Operadores: + - * /
   // - Decimal: , ou .
   // - Calcular: = ou Enter
-  // - Limpar: Escape (tudo) ou Backspace/Delete (entrada atual)
+  // - Limpar: Delete (tudo) ou Backspace (entrada atual)
   useKeyboard({
     handleNumberClick: calculator.handleNumberClick,
     handleDecimalClick: calculator.handleDecimalClick,

@@ -50,14 +50,13 @@ export function useKeyboard({
           handleEquals();
           break;
 
-        // Limpar tudo (Espaço)
-        case 'Espace':
+        // Limpar tudo (Delete)
+        case 'Delete':
           handleClear();
           break;
 
-        // Limpar entrada atual (Backspace ou Delete)
+        // Limpar entrada atual (Backspace)
         case 'Backspace':
-        case 'Delete':
           handleClearEntry();
           break;
 
