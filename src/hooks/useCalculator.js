@@ -163,10 +163,10 @@ export function useCalculator() {
 	 */
 	const getCurrentOperation = useCallback(() => {
 		if (firstOperand !== null && operator) {
-			return `${String(firstOperand).replace(",", ".")} ${operator}`;
+			return `${String(firstOperand).replace(",", ".")} ${operator} ${display.replace(",", ".")}`;
 		}
 		return "";
-	}, [firstOperand, operator]);
+	}, [firstOperand, operator, display]);
 
 	return {
 		display,
