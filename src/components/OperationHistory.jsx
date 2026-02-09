@@ -6,7 +6,7 @@ import { Text } from './ui/Text'
 export function OperationHistory({ history, onClearHistory }) {
   return (
     <Card className="w-89 sm:w-full py-10 px-8 bg-[#1E293B]">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 ">
         <Text as="h1" variant="heading">
           Histórico de Operações
         </Text>
