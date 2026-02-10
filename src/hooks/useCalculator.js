@@ -39,6 +39,15 @@ export function useCalculator() {
 					setWaitingForOperand(false);
 					return String(digit);
 				}
+
+        // Remove a vírgula para contar somente os dígitos
+        const currentDisplay = prevDisplay.replace(",", "");
+
+        // Limita o display a 16 dígitos
+        if (currentDisplay.length >= 16) {
+          return prevDisplay;
+        }
+
 				return prevDisplay === "0" ? String(digit) : prevDisplay + digit;
 			});
 		},
@@ -94,6 +103,15 @@ export function useCalculator() {
 						setFirstOperand(result);
 						setWaitingForOperand(true);
 						setOperator(nextOperator);
+
+            // Limita o resultado a 16 dígitos
+            let resultStr = String(result);
+            const resultDigits = resultStr.replace(",", "");
+            if (resultDigits.length > 16) {
+              // Usa a notação científica
+              resultStr = result.toExponential(10).replace(",", "");
+            }
+
 						return String(result).replace(".", ",");
 					} catch (error) {
 						setDisplay("Erro");

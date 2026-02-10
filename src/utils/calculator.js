@@ -44,7 +44,7 @@ export function formatDisplay(value) {
 
   // Se for muito grande, usa notação científica
   if (Math.abs(num) > 999999999) {
-    return num.toExponential(5);
+    return num.toExponential(10);
   }
 
   // Formata o número para exibição, trocando o ponto decimal por vírgula.
