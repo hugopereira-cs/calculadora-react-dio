@@ -104,14 +104,6 @@ export function useCalculator() {
 						setWaitingForOperand(true);
 						setOperator(nextOperator);
 
-            // Limita o resultado a 16 dígitos
-            let resultStr = String(result);
-            const resultDigits = resultStr.replace(",", "");
-            if (resultDigits.length > 16) {
-              // Usa a notação científica
-              resultStr = result.toExponential(10).replace(",", "");
-            }
-
 						return String(result).replace(".", ",");
 					} catch (error) {
 						setDisplay("Erro");
@@ -139,7 +131,17 @@ export function useCalculator() {
 
 		if (operator && firstOperand !== null) {
 			try {
-				const result = calculate(firstOperand, inputValue, operator);
+				let result = calculate(firstOperand, inputValue, operator);
+
+        // Limita a quantidade de dígitos do resultado (8 casas decimais para números decimais - 13 dígitos para inteiros)
+        if (String(result).length > 13) {
+          if (String(result).includes(".")) {
+            result = result.toFixed(8);
+          } else {
+            result = result.toExponential(10);
+          }
+          
+        }
 
 				// Adiciona ao histórico
 				const operationString = formatOperation(
@@ -148,6 +150,8 @@ export function useCalculator() {
 					display.replace(",", "."),
 					String(result),
 				);
+
+        
 
 				const newHistoryEntry = {
 					id: `${Date.now()}-${operationString}`,
