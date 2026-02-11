@@ -43,8 +43,8 @@ export function useCalculator() {
         // Remove a vírgula para contar somente os dígitos
         const currentDisplay = prevDisplay.replace(",", "");
 
-        // Limita o display a 16 dígitos
-        if (currentDisplay.length >= 16) {
+        // Limita o display a 13 dígitos
+        if (currentDisplay.length >= 13) {
           return prevDisplay;
         }
 
@@ -133,8 +133,8 @@ export function useCalculator() {
 			try {
 				let result = calculate(firstOperand, inputValue, operator);
 
-        // Limita a quantidade de dígitos do resultado (8 casas decimais para números decimais - 13 dígitos para inteiros)
-        if (String(result).length > 13) {
+        // Limita a quantidade de dígitos do resultado (8 casas decimais para números decimais - 14 dígitos para inteiros)
+        if (String(result).length >= 14) {
           if (String(result).includes(".")) {
             result = result.toFixed(8);
           } else {
