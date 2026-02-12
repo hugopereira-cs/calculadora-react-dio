@@ -43,8 +43,8 @@ export function useCalculator() {
         // Remove a vírgula para contar somente os dígitos
         const currentDisplay = prevDisplay.replace(",", "");
 
-        // Limita o display a 13 dígitos
-        if (currentDisplay.length >= 13) {
+        // Limita o display a 14 dígitos
+        if (currentDisplay.length >= 14) {
           return prevDisplay;
         }
 
@@ -87,40 +87,40 @@ export function useCalculator() {
 	 */
 	const handleOperatorClick = useCallback(
 		(nextOperator) => {
-			setDisplay((prevDisplay) => {
-				const inputValue = parseFloat(prevDisplay.replace(",", "."));
+			
+			const inputValue = parseFloat(display.replace(",", "."));
 
-				if (firstOperand === null) {
-					setFirstOperand(inputValue);
-					setWaitingForOperand(true);
-					setOperator(nextOperator);
-					return prevDisplay;
-				}
+      if (firstOperand === null) {
+        setFirstOperand(inputValue);
+        setWaitingForOperand(true);
+        setOperator(nextOperator);
+        setDisplay("0");
+        return;
+      }
 
-				if (operator) {
-					try {
-						const result = calculate(firstOperand, inputValue, operator);
-						setFirstOperand(result);
-						setWaitingForOperand(true);
-						setOperator(nextOperator);
+      if (operator) {
+        try {
+          const result = calculate(firstOperand, inputValue, operator);
+          setFirstOperand(result);
+          setWaitingForOperand(true);
+          setOperator(nextOperator);
+          setDisplay("0");
+          return String(result).replace(".", ",");
+        } catch (error) {
+          setDisplay("Erro");
+          console.error("Erro na calculadora:", error);
+          setFirstOperand(null);
+          setOperator(null);
+          setWaitingForOperand(true);
+          return "Erro";
+        }
+      }
 
-						return String(result).replace(".", ",");
-					} catch (error) {
-						setDisplay("Erro");
-						console.error("Erro na calculadora:", error);
-						setFirstOperand(null);
-						setOperator(null);
-						setWaitingForOperand(true);
-						return "Erro";
-					}
-				}
-
-				setWaitingForOperand(true);
-				setOperator(nextOperator);
-				return prevDisplay;
-			});
+      setOperator(nextOperator);
+      setWaitingForOperand(true);
+      setDisplay("0");
 		},
-		[firstOperand, operator],
+		[display, firstOperand, operator],
 	);
 
 	/**
@@ -150,8 +150,6 @@ export function useCalculator() {
 					display.replace(",", "."),
 					String(result),
 				);
-
-        
 
 				const newHistoryEntry = {
 					id: `${Date.now()}-${operationString}`,
@@ -185,10 +183,10 @@ export function useCalculator() {
 	 */
 	const getCurrentOperation = useCallback(() => {
 		if (firstOperand !== null && operator) {
-			return `${String(firstOperand).replace(",", ".")} ${operator} ${display.replace(",", ".")}`;
+			return `${String(firstOperand).replace(",", ".")} ${operator}`;
 		}
 		return "";
-	}, [firstOperand, operator, display]);
+	}, [firstOperand, operator]);
 
 	return {
 		display,
