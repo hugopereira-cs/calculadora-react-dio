@@ -139,8 +139,7 @@ export function useCalculator() {
             result = result.toFixed(8);
           } else {
             result = result.toExponential(10);
-          }
-          
+          }  
         }
 
 				// Adiciona ao histórico
@@ -157,7 +156,6 @@ export function useCalculator() {
 				};
 
 				setHistory((prev) => [newHistoryEntry, ...prev].slice(0, 50)); // Mantém últimas 50
-
 				setDisplay(String(result).replace(".", ","));
 				setFirstOperand(null);
 				setOperator(null);
